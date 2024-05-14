@@ -1,0 +1,10 @@
+.block{
+    float: left;
+    height: 110px;
+    padding: "20px 40px";
+    margin-right: 60px;
+}
+
+.dropdown{
+    width: 250px;
+}

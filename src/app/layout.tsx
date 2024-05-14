@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Inter } from "next/font/google";
+import { Layout } from 'antd';
+import AppHeader from '@/app/components/AppHeader';
+import AppSider from '@/app/components/AppSider';
 import "./globals.css";
+import Sider from "antd/es/layout/Sider";
+import { Content } from "antd/es/layout/layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +22,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AntdRegistry>
+          <Layout>
+              <AppHeader></AppHeader>
+              <Layout hasSider>
+                <Sider theme="light" style={{
+                  position: "fixed",
+                  top: "20",
+                  left: 0,
+                  height: "100%",
+                }}>
+                <AppSider></AppSider>
+                </Sider>
+                <Layout style={{marginLeft: "180px", backgroundColor: "#f1f1f1"}}>
+                  <Content style={{padding:"0px 50px"}}>
+                    {children}
+                  </Content>
+                  </Layout>
+              </Layout>
+          </Layout>
+        </AntdRegistry></body>
     </html>
   );
 }
